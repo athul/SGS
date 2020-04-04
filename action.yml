@@ -1,0 +1,30 @@
+name: SGS
+description: Get an SMS when something new happens on GitHub like a new Issue,PR or Push
+inputs:
+  FROM_NUM:
+    description: "Phone number in your Twilio account to send the SMS from"
+    required: true
+  TO_NUM:
+    description: "Phone number to send the SMS to"
+    required: true
+  TWILIO_ACCOUNT_SID:
+    description: "A Twilio Account SID. Can alternatively be stored in environment"
+    required: true
+  TWILIO_API_KEY:
+    description: "A Twilio API Key. Can alternatively be stored in environment"
+    required: true
+  TWILIO_API_SECRET:
+    description: "A Twilio API Secret. Can alternatively be stored in environment"
+    required: true
+  iu_title:
+    description: "Issue Title"
+    default: ${{ github.event.issue.title }}
+  pr_title:
+    description: "Title of the PR"
+    default: ${{ github.event.pull_request.title }}
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: zap
+  color: green
