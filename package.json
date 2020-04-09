@@ -7,9 +7,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "twilio": "^3.34.0",
     "actions-toolkit": "^4.0.0",
-    "dotenv": "^8.2.0",
-    "twilio": "^3.42.0"
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {
     "@zeit/ncc": "^0.22.0",

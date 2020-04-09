@@ -20,7 +20,6 @@ const isClosedPR = tools.context.event == "pull_request" && ["closed"].includes(
 const isIssuemade = tools.context.event == "issues" && ["opened"].includes(tools.context.payload.action)
 const isIssueClosed = tools.context.event == "issues" && ["closed"].includes(tools.context.payload.action)
 const ev_num = tools.context.payload.issue.number
-//const ev_num=12
 let prIssueName = (pr) => {
   if (pr.length > 30) {
     return truncateString(pr, 30)
@@ -46,14 +45,15 @@ Title: ${prIssueName(ititle)}`
     return response
   }
 }
-message = responseRunner()
+msgbody = responseRunner()
 tools.log.debug("Sending the SMS")
   const resultMessage = await client.messages.create({
     from,
     to,
-    body: message,
+    body: msgbody,
   })
-  .then(message => console.log(message.sid));
+  tools.log.info(resultMessage.sid);
+  tools.
   tools.log.success("SMS Sent")
   return resultMessage
 }
