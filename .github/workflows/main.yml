@@ -22,8 +22,9 @@ jobs:
       uses: athul/SGS@master
       if: always()
       with:
-        from_num: ${{ secrets.FROM }}
-        to_num: ${{ secrets.TO }}
+        FROM_NUM: ${{ secrets.FROM }}
+        TO_NUM: ${{ secrets.TO }}
+      env:
         TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
         TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
         TWILIO_API_SECRET: ${{ secrets.TWILIO_API_SECRET }}
