@@ -47,13 +47,13 @@ Title: ${prIssueName(ititle)}`
 }
 msgbody = responseRunner()
 tools.log.debug("Sending the SMS")
-  const resultMessage = await client.messages.create({
+  const resultMessage = await client.messages
+  .create({
     from,
     to,
     body: msgbody,
   })
-  tools.log.info(resultMessage.sid);
-  tools.
+  .then(message => console.log(message.sid));
   tools.log.success("SMS Sent")
   return resultMessage
 }
