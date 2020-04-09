@@ -3,6 +3,7 @@ const { Toolkit } = require('actions-toolkit')
 const tools = new Toolkit()
 const twilio = require('twilio')
 // Run your GitHub Action!
+async function run() {
 const {
   INPUT_PR_TITLE: ptitle,
   INPUT_IU_TITLE: ititle,
@@ -25,7 +26,6 @@ let prIssueName = (pr) => {
     return truncateString(pr, 30)
   }
 }
-
 function responseRunner() {
   if (isOpenedPr) {
     let response =
@@ -48,12 +48,12 @@ Title: ${prIssueName(ititle)}`
 }
 message = responseRunner()
 tools.log.debug("Sending the SMS")
-async function run() {
   const resultMessage = await client.messages.create({
     from,
     to,
     body: message,
-  });
+  })
+  .then(message => console.log(message.sid));
   tools.log.success("SMS Sent")
   return resultMessage
 }
